@@ -18,7 +18,9 @@ def get_good_first_issues(owner: str, repo: str):
     url = f'https://api.github.com/repos/{owner}/{repo}/issues'
     params = {
         'state': 'open',
-        'labels': 'good first issue,help wanted'
+        'labels': label if label else 'good first issue,help wanted',
+        'sort': 'created',
+        'direction': 'desc'
     }
 
     response = requests.get(url, headers=headers, params=params)
